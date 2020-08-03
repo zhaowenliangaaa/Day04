@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>z
+<body>
+<div id="app">
+    <h1>用户管理</h1>
+    <button @click="toAdd">添加</button>
+    <div>
+        姓名:<input v-model="user.name"><br>
+        性别:<input type="radio" v-model="user.gender" value="男">男
+             <input type="radio" v-model="user.gender" value="女">女<br>
+        年龄:<input v-model="user.age"><br>
+    </div>
+    <div>
+        <table border="1">
+            <tr>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+            </tr>
+
+            <tr v-for="(user,index) in page.list" :key="index">
+                <td>{{user.name}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <table border="1">
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+        </tr>
+
+        <tr v-for="(user,index) in page.list" :key="index">
+            <td>{{user.name}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+    </table>
+    <button @click="page.pageNum=1">首页</button>
+    <button @click="page.pageNum>1?page.pageNum=page.pageNum-1:page.pageNum-1">上一页</button>
+    <button @click="page.pageNum>=page.totalPage?page.pageNum=3:page.pageNum=page.pageNum+1">下一页</button>
+    <button @click="page.pageNum=page.totalPage">尾页</button>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            user:{
+
+            },
+            page:{
+                pageNum:1,
+                pageSize:2,
+                totalPage:0,
+                list:[2]
+            },
+            users:[ //数据源
+                {name:'李小龙',gender:'男',age:20},
+                {name:'叶问',gender:'男',age:25},
+                {name:'百里守约',gender:'男',age:30},
+                {name:'妲己',gender:'女',age:100},
+                {name:'貂蝉',gender:'女',age:200}
+            ]
+        },
+        created() {
+            this.page.totalPage = Math.ceil(this.users.length/this.pageSize);
+            var startIndex = (this.page.pageNum-1)*this.page.pageSize
+            var endIndex = this.page.pageNum*this.page.pageSize
+            this.page.list = this.users.slice(startIndex,endIndex);
+        },
+        watch:{
+            "page.pageNum"(){
+                var startIndex = (this.page.pageNum-1)*this.page.pageSize
+                var endIndex = this.page.pageNum*this.page.pageSize
+                this.page.list = this.users.slice(startIndex,endIndex);
+            }
+        },
+    });
+</script>
+</html>

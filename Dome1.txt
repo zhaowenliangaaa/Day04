@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    你好，我今年{{age}}岁
+    <button @click="plue">+1</button>
+    <button @click="plue">+2</button>
+    <button @click="plue">+3</button>
+    <button @click="minus">-</button>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            age:18
+        },
+        methods:{
+            plue:function () {
+                this.age++;
+            },
+            minus:function () {
+                this.age--;
+            }
+        }
+    })
+</script>
+</html>

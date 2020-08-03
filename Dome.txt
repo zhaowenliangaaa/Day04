@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="tv">
+    <h1>
+        你好{{name}},你今年{{age}}!
+    </h1>
+</div>
+</body>
+<script type="application/javascript">
+    var app = new Vue({
+       el:"#tv",
+        data:{
+           name:"VUE",
+            age:"20"
+        }
+    });
+</script>
+</html>

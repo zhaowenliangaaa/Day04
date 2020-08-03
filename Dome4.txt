@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input v-model="name" value="{{name}}">
+    <select v-model="dept">
+        <option value="0">请选择</option>
+        <option value="1">大数据</option>
+        <option value="2">物联网</option>
+        <option value="3">人工智能</option>
+    </select>
+    <input type="radio" v-model="sex" name="sex" value="0"/>男
+    <input type="radio" v-model="sex" name="sex" value="1"/>女<br/>
+
+    <input type="checkbox" v-model="hobby" name="hobby" value="0"/>打篮球
+    <input type="checkbox" v-model="hobby" name="hobby" value="1"/>踢足球
+    <input type="checkbox" v-model="hobby" name="hobby" value="2"/>打王者荣耀
+    <input type="checkbox" v-model="hobby" name="hobby" value="3"/>踢毽子<br/>
+
+    <textarea cols="20" rows="20" v-model="show">
+
+    </textarea><br/>
+
+    <input type="search" value="zwl" name="zwl" v-model="zwl">
+
+
+</div>
+</body>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            name:0,
+            dept:0,
+            sex:0,
+            hobby:[0,1],
+            show:"这里是我的多行文本域的生命！",
+            zwl:
+        },
+    });
+</script>
+</html>
